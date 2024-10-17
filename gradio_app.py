@@ -29,19 +29,19 @@ def get_themes(theme_list_str,subtitles_path,save_path):
 
 def main():
     with gr.Blocks() as iface:
+        # Theme Classification Section
         with gr.Row():
             with gr.Column():
-                gr.HTML('<h1>Theme Classification (Zero-shot)</h1>')    
+                gr.HTML("<h1>Theme Classification (Zero Shot Claasifiers)</h1>")
                 with gr.Row():
                     with gr.Column():
                         plot = gr.BarPlot()
                     with gr.Column():
-                        theme_list = gr.Textbox(label="Themes", placeholder="Enter Themes")
-                        subtitles_path = gr.Textbox(label="Subtitles Path", placeholder="Enter Subtitles Path")
-                        save_path = gr.Textbox(label="Save Path", placeholder="Enter Save Path")
-                        get_themes_button = gr.Button("Get Themes")
+                        theme_list = gr.Textbox(label="Themes")
+                        subtitles_path = gr.Textbox(label="Subtitles or script Path")
+                        save_path = gr.Textbox(label="Save Path")
+                        get_themes_button =gr.Button("Get Themes")
                         get_themes_button.click(get_themes, inputs=[theme_list,subtitles_path,save_path], outputs=[plot])
-                     
     iface.launch(share=True)
 
 if __name__ == '__main__':
