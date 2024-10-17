@@ -13,7 +13,7 @@ from utils import load_subtitles_dataset
 nltk.download('punkt')
 nltk.download('punkt_tab')
 
-class ThemeClassifier:
+class ThemeClassifier():
     def __init__(self, theme_list):
         self.model_name = "facebook/bart-large-mnli"
         self.device = 0 if torch.cuda.is_available() else 'cpu'
@@ -41,7 +41,7 @@ class ThemeClassifier:
         
         # Run Model
         theme_output = self.theme_classifier(
-            script_batches[:2],
+            script_batches,
             self.theme_list,
             multi_label=True
         )
@@ -66,7 +66,6 @@ class ThemeClassifier:
 
         # load Dataset
         df = load_subtitles_dataset(dtaset_path)
-        df = df.head(2)
 
         # Run Inference
         output_themes = df['script'].apply(self.get_themes_inference)
